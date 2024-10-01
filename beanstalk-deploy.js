@@ -261,6 +261,7 @@ function main() {
     if (IS_GITHUB_ACTION) { //Running in GitHub Actions
         application = strip(process.env.INPUT_APPLICATION_NAME);
         environmentName = strip(process.env.INPUT_ENVIRONMENT_NAME);
+        console.log('versionLabel: ' + process.env.INPUT_VERSION_LABEL);
         versionLabel = strip(process.env.INPUT_VERSION_LABEL);
         versionDescription = strip(process.env.INPUT_VERSION_DESCRIPTION);
         file = strip(process.env.INPUT_DEPLOYMENT_PACKAGE);
@@ -427,6 +428,7 @@ function waitForDeployment(application, environmentName, versionLabel, start, wa
                 expect(200, result, `Failed in call to describeEnvironments`);
                 counter++;
                 let env = result.data.DescribeEnvironmentsResponse.DescribeEnvironmentsResult.Environments[0];
+                console.log(`$$$$ env is `, env);
                 if (env.VersionLabel === versionLabel && env.Status === 'Ready') {
                     if (!degraded) {
                         console.log(`Deployment finished. Version updated to ${env.VersionLabel}`);
