@@ -429,7 +429,7 @@ function waitForDeployment(application, environmentName, versionLabel, start, wa
                 counter++;
                 let env = result.data.DescribeEnvironmentsResponse.DescribeEnvironmentsResult.Environments[0];
                 console.log(`$$$$ env is `, env);
-                if (env.VersionLabel === versionLabel && env.Status === 'Ready') {
+                if (env?.VersionLabel === versionLabel && env?.Status === 'Ready') {
                     if (!degraded) {
                         console.log(`Deployment finished. Version updated to ${env.VersionLabel}`);
                         console.log(`Status for ${application}-${environmentName} is ${env.Status}, Health: ${env.Health}, HealthStatus: ${env.HealthStatus}`);
