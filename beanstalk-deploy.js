@@ -457,12 +457,12 @@ function waitForDeployment(application, environmentName, versionLabel, start, wa
                         }
                     }
                 } else if (deploymentFailed) {
-                    let msg = `Deployment failed! Current State: Version: ${env.VersionLabel}, Health: ${env.Health}, Health Status: ${env.HealthStatus}`;
+                    let msg = `Deployment failed! Current State: Version: ${env?.VersionLabel}, Health: ${env?.Health}, Health Status: ${env?.HealthStatus}`;
                     console.log(`${new Date().toISOString().substr(11, 8)} ERROR: ${msg}`);
                     reject(new Error(msg));
                 } else {
                     if (counter % 6 === 0 && !deploymentFailed) {
-                        console.log(`${new Date().toISOString().substr(11, 8)} INFO: Still updating, status is "${env.Status}", health is "${env.Health}", health status is "${env.HealthStatus}"`);
+                        console.log(`${new Date().toISOString().substr(11, 8)} INFO: Still updating, status is "${env?.Status}", health is "${env?.Health}", health status is "${env?.HealthStatus}"`);
                     }
                     setTimeout(update, waitPeriod);
                 }
